@@ -1,7 +1,11 @@
 ng-magnify
 ==========
 
-AngularJS directive for simple image magnification
-
-
-Inspired by @ruby_on_tails on http://thecodeplayer.com/walkthrough/magnifying-glass-for-images-using-jquery-and-css3
+```html
+<div data-ng-magnify
+  data-image-width=""
+  data-image-height="590"
+  data-glass-width="450"
+  data-glass-height="450"
+  data-image-src="{{ detect.img.path }}"></div>
+```
