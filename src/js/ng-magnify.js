@@ -64,11 +64,13 @@
             };
             img.src = scope.imageSrc;
           } else {
-            // IE8 uses evt.x and evt.y
-            mx = (evt.pageX) ? (evt.pageX - el.left) : evt.x;
-            my = (evt.pageY) ? (evt.pageY - el.top) : evt.y;
+            var relative_offset = ( el.width - el.imageWidth ) / 2;
+            el.left = el.left + relative_offset;
 
-            if (mx < el.width && my < el.height && mx > 0 && my > 0) {
+            mx = evt.pageX - el.left;
+            my = evt.pageY - el.top;
+
+            if (mx < el.imageWidth && my < el.height && mx > 0 && my > 0) {
               glass.css({
                 opacity: 1,
                 'z-index': 1,
@@ -87,7 +89,7 @@
             ry = Math.round(my/el.imageHeight*nHeight - el.glassHeight/2)*-1;
             bgp = rx + 'px ' + ry + 'px';
 
-            px = mx - el.glassWidth/2;
+            px = mx - el.glassWidth/2 + relative_offset;
             py = my - el.glassHeight/2;
 
             return { left: px+'px', top: py+'px', backgroundPosition: bgp };
