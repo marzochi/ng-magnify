@@ -112,9 +112,17 @@
           };
         };
 
+        scope.sepReplace = function( dizin ) {
+          if ( dizin.indexOf('\\') != -1 ) {
+            dizin = dizin.replace('\\', '/');
+            return scope.sepReplace( dizin );
+          }
+          return dizin;
+        }
+
         scope.getGlassStyle = function () {
           return {
-            background: 'url("' + scope.imageSrc + '") no-repeat',
+            background: 'url("' + scope.sepReplace( scope.imageSrc ) + '") no-repeat',
             width: (scope.glassWidth) ? scope.glassWidth + 'px' : '',
             height: (scope.glassHeight) ? scope.glassHeight + 'px' : ''
           };
